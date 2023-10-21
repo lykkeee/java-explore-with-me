@@ -24,18 +24,18 @@ public class StatsClient {
     private final String url;
 
     @Autowired
-    public StatsClient(RestTemplate restTemplate, String url) {
-        this.restTemplate = restTemplate;
-        this.url = url;
+    public StatsClient() {
+        this.restTemplate = new RestTemplate();
+        this.url = "";
     }
 
-    public HitResponseDto addStat(HitRequestDto hitRequestDto) {
-        return restTemplate.postForObject(url + "hit", hitRequestDto, HitResponseDto.class);
+    public void addStat(HitRequestDto hitRequestDto) {
+        restTemplate.postForObject(url + "/hit", hitRequestDto, HitResponseDto.class);
     }
 
     public List<HitResponseDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
         ResponseEntity<HitResponseDto[]> responseEntity = restTemplate.getForEntity(url + "/stats?start=" + encodeDateTime(start) +
-                        "&end=" + encodeDateTime(end) + "&uris=" + uris + "&unique=" + unique,
+                        "&end=" + encodeDateTime(end) + "&unique=" + unique + "&uris=" + uris.get(0),
                 HitResponseDto[].class);
         return Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
     }

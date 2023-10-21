@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 public class StatsController {
-    StatsServiceImpl statsService;
+    private final StatsServiceImpl statsService;
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,8 +29,8 @@ public class StatsController {
     }
 
     @GetMapping("/stats")
-    public List<HitResponseDto> getStats(@RequestParam  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
-                                         @RequestParam  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
+    public List<HitResponseDto> getStats(@RequestParam   String start,
+                                         @RequestParam   String end,
                                          @RequestParam(required = false) List<String> uris,
                                          @RequestParam(defaultValue = "false") Boolean unique) {
         log.info("Запрос на получение списка статистики с " + start + " по " + end);
