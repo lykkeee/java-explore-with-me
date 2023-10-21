@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.practicum.model.category.Category;
-import ru.practicum.model.enums.State;
 import ru.practicum.model.user.User;
 
 import javax.persistence.*;

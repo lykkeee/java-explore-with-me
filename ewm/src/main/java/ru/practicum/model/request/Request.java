@@ -3,7 +3,6 @@ package ru.practicum.model.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.model.enums.Status;
 import ru.practicum.model.event.Event;
 import ru.practicum.model.user.User;
 

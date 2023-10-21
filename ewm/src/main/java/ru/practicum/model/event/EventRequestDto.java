@@ -3,7 +3,6 @@ package ru.practicum.model.event;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

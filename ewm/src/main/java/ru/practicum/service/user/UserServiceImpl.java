@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDto> getUsersAdmin(List<Long> users, Integer from, Integer size) {
         List<User> response;
         if (users == null) {
-            response = userRepository.findAll(PageRequest.of(from/ size, size)).toList();
+            response = userRepository.findAll(PageRequest.of(from / size, size)).toList();
         } else {
-            response = userRepository.findByList(users, PageRequest.of(from/ size, size)).toList();
+            response = userRepository.findByList(users, PageRequest.of(from / size, size)).toList();
         }
         return response.stream().map(user -> mapper.map(user, UserResponseDto.class)).collect(Collectors.toList());
     }

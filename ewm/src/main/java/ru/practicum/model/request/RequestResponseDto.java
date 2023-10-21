@@ -2,8 +2,6 @@ package ru.practicum.model.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import ru.practicum.model.enums.Status;
-import ru.practicum.model.user.User;
 
 import java.time.LocalDateTime;
 

@@ -39,7 +39,7 @@ public class CompilationServiceImpl implements CompilationService {
         Compilation compilation = CompilationMapper.toModel(compilationRequestDto, eventRepository);
         CompilationResponseDto response = CompilationMapper.toResponse(compilationRepository.save(compilation));
         response.setEvents(setEvents(compilation));
-        return  response;
+        return response;
     }
 
     @Override
@@ -56,12 +56,12 @@ public class CompilationServiceImpl implements CompilationService {
         CompilationMapper.toModel(compilationUpdateDto, eventRepository, compilation);
         CompilationResponseDto response = CompilationMapper.toResponse(compilationRepository.save(compilation));
         response.setEvents(setEvents(compilation));
-        return  response;
+        return response;
     }
 
     @Override
     public List<CompilationResponseDto> getCompilations(Boolean pinned, Integer from, Integer size) {
-        Pageable pageable = PageRequest.of(from/ size, size);
+        Pageable pageable = PageRequest.of(from / size, size);
         List<Compilation> compilations;
         if (pinned == null) {
             compilations = compilationRepository.findAll(pageable).toList();
@@ -88,8 +88,8 @@ public class CompilationServiceImpl implements CompilationService {
 
     private List<EventShortDto> setEvents(Compilation compilation) {
         return compilation.getEvents().stream().map(event -> EventMapper
-                        .toShort(event, requestRepository.findByEventIdAndStatus(event.getId(), Status.CONFIRMED.toString()).size(),
-                                getViews(event.getId()))).collect(Collectors.toList());
+                .toShort(event, requestRepository.findByEventIdAndStatus(event.getId(), Status.CONFIRMED.toString()).size(),
+                        getViews(event.getId()))).collect(Collectors.toList());
     }
 
     private Long getViews(Long eventId) {
