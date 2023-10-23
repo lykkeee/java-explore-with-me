@@ -10,7 +10,10 @@ import ru.practicum.mapper.ToStatMapper;
 import ru.practicum.model.Stat;
 import ru.practicum.repository.StatsRepository;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -25,22 +28,29 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public List<HitResponseDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
-        if (end.isBefore(start)) {
+    public List<HitResponseDto> getStats(String start, String end, List<String> uris, Boolean unique) {
+        LocalDateTime startTime = decodeDateTime(start);
+        LocalDateTime endTime = decodeDateTime(end);
+        if (endTime.isBefore(startTime)) {
             throw new IncorrectTimeException("Дата конца периода должна быть позже даты начала периода");
         }
         if (uris == null || uris.isEmpty()) {
             if (unique) {
-                return statsRepository.getStatsUnique(start, end);
+                return statsRepository.getStatsUnique(startTime, endTime);
             } else {
-                return statsRepository.getStats(start, end);
+                return statsRepository.getStats(startTime, endTime);
             }
         } else {
             if (unique) {
-                return statsRepository.getStatsUriUnique(start, end, uris);
+                return statsRepository.getStatsUriUnique(startTime, endTime, uris);
             } else {
-                return statsRepository.getStatsUri(start, end, uris);
+                return statsRepository.getStatsUri(startTime, endTime, uris);
             }
         }
+    }
+
+    private LocalDateTime decodeDateTime(String dateTime) {
+        String strDateTime = URLDecoder.decode(dateTime, StandardCharsets.UTF_8);
+        return LocalDateTime.parse(strDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 }
