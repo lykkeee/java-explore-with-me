@@ -41,8 +41,8 @@ public class UserCommentsController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment (@RequestParam Long commentId,
-                               @PathVariable Long userId) {
+    public void deleteComment(@RequestParam Long commentId,
+                              @PathVariable Long userId) {
         log.info("Запрос на удаление комментария с id={} пользователем с id={}", commentId, userId);
         commentService.deleteComment(commentId, userId);
         log.info("Комментарий удален");

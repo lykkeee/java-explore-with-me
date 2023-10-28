@@ -11,14 +11,14 @@ public interface CommentService {
 
     CommentResponseDto editComment(Long commentId, Long userId, CommentRequestDto commentRequestDto);
 
-    void deleteComment (Long commentId, Long userId);
+    void deleteComment(Long commentId, Long userId);
 
     void adminDeleteComment(Long commentId);
 
     CommentResponseDto getComment(Long commentId);
 
-    List<CommentResponseDto> getUserComments (Long userId, Integer from, Integer size);
+    List<CommentResponseDto> getUserComments(Long userId, Integer from, Integer size);
 
-    List<CommentResponseDto> getEventComments (Long eventId, Integer from, Integer size);
+    List<CommentResponseDto> getEventComments(Long eventId, Integer from, Integer size);
 
 }

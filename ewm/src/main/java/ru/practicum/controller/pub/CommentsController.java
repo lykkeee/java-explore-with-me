@@ -25,9 +25,9 @@ public class CommentsController {
     }
 
     @GetMapping("/users/{userId}")
-    public List<CommentResponseDto> getUserComments (@PathVariable Long userId,
-                                                     @RequestParam(defaultValue = "0") Integer from,
-                                                     @RequestParam(defaultValue = "10") Integer size) {
+    public List<CommentResponseDto> getUserComments(@PathVariable Long userId,
+                                                    @RequestParam(defaultValue = "0") Integer from,
+                                                    @RequestParam(defaultValue = "10") Integer size) {
         log.info("Запрос на получение списка комментариев от пользователя id={} c параметрами from: {}, size: {}", userId, from, size);
         List<CommentResponseDto> response = commentService.getUserComments(userId, from, size);
         log.info("Список получен: {}", response);
@@ -35,9 +35,9 @@ public class CommentsController {
     }
 
     @GetMapping("/events/{eventId}")
-    public List<CommentResponseDto> getEventComments (@PathVariable Long eventId,
-                                                      @RequestParam(defaultValue = "0") Integer from,
-                                                      @RequestParam(defaultValue = "10") Integer size) {
+    public List<CommentResponseDto> getEventComments(@PathVariable Long eventId,
+                                                     @RequestParam(defaultValue = "0") Integer from,
+                                                     @RequestParam(defaultValue = "10") Integer size) {
         log.info("Запрос на получение списка комментариев к событию id={} c параметрами from: {}, size: {}", eventId, from, size);
         List<CommentResponseDto> response = commentService.getEventComments(eventId, from, size);
         log.info("Список получен: {}", response);
