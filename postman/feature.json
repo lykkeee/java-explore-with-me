@@ -65,10 +65,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?eventId=1",
+							"raw": "http://localhost:8080/users/1/comments?eventId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -114,10 +116,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?eventId=1",
+							"raw": "http://localhost:8080/users/1/comments?eventId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -163,10 +167,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/500/comments?eventId=1",
+							"raw": "http://localhost:8080/users/500/comments?eventId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"500",
@@ -212,10 +218,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?eventId=500",
+							"raw": "http://localhost:8080/users/1/comments?eventId=500",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -287,10 +295,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?commentId=1",
+							"raw": "http://localhost:8080/users/1/comments?commentId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -336,10 +346,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?commentId=2",
+							"raw": "http://localhost:8080/users/1/comments?commentId=2",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -402,10 +414,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/comments?commentId=1",
+							"raw": "http://localhost:8080/comments?commentId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"comments"
 							],
@@ -440,10 +454,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/comments?commentId=2",
+							"raw": "http://localhost:8080/comments?commentId=2",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"comments"
 							],
@@ -513,10 +529,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/2/comments?eventId=2",
+							"raw": "http://localhost:8080/users/2/comments?eventId=2",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"2",
@@ -582,10 +600,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/comments/users/1",
+							"raw": "http://localhost:8080/comments/users/1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"comments",
 								"users",
@@ -644,10 +664,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/comments/events/2",
+							"raw": "http://localhost:8080/comments/events/2",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"comments",
 								"events",
@@ -678,10 +700,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?commentId=10",
+							"raw": "http://localhost:8080/users/1/comments?commentId=10",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -718,10 +742,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?commentId=2",
+							"raw": "http://localhost:8080/users/1/comments?commentId=2",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -756,10 +782,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/users/1/comments?commentId=1",
+							"raw": "http://localhost:8080/users/1/comments?commentId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"1",
@@ -794,10 +822,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/admin/comments/2",
+							"raw": "http://localhost:8080/admin/comments/2",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -868,10 +898,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/13/rates?eventId=5",
+							"raw": "http://localhost:8080/users/13/rates?eventId=5",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"13",
@@ -917,10 +949,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/13/rates?eventId=5",
+							"raw": "http://localhost:8080/users/13/rates?eventId=5",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"13",
@@ -966,10 +1000,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/2/rates?eventId=1",
+							"raw": "http://localhost:8080/users/2/rates?eventId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"2",
@@ -1015,10 +1051,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/500/comments?eventId=1",
+							"raw": "http://localhost:8080/users/500/comments?eventId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"500",
@@ -1057,10 +1095,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/rates/5",
+							"raw": "http://localhost:8080/rates/5",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"rates",
 								"5"
@@ -1116,10 +1156,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/13/rates?rateId=1",
+							"raw": "http://localhost:8080/users/13/rates?rateId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"13",
@@ -1156,10 +1198,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/users/2/rates?rateId=1",
+							"raw": "http://localhost:8080/users/2/rates?rateId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"2",
@@ -1194,10 +1238,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/users/13/rates?rateId=1",
+							"raw": "http://localhost:8080/users/13/rates?rateId=1",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								"13",
