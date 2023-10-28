@@ -37,4 +37,5 @@ public class Event {
     private LocalDateTime publishedOn;
     private String state;
     private String title;
+    private Float rating;
 }

@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_admin;
+package ru.practicum.controller.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +28,11 @@ public class AdminEventsController {
                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
                                              @RequestParam(defaultValue = "0") Integer from,
                                              @RequestParam(defaultValue = "10") Integer size) {
-        log.info("Запрос на получение списка полной информации событий");
+        log.info("Запрос на получение списка полной информации событий по параметрам userId: {}, states: {}, categoryId: {}, " +
+                "rangeStart: {}, rangeEnd: {}, from: {}, size: {}", users, states, categories, rangeStart, rangeEnd, from, size);
         List<EventFullDto> response = eventService.getAdminEvents(users, states, categories,
                 rangeStart, rangeEnd, from, size);
-        log.info("Список получен");
+        log.info("Список получен: {}", response);
         return response;
     }
 

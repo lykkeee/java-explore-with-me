@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_admin;
+package ru.practicum.controller.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +22,9 @@ public class AdminUsersController {
     public List<UserResponseDto> getUsersAdmin(@RequestParam(required = false) List<Long> ids,
                                          @RequestParam(defaultValue = "0") Integer from,
                                          @RequestParam(defaultValue = "10") Integer size) {
-        log.info("Запрос на получение списка пользователей с id: {}", ids);
+        log.info("Запрос на получение списка пользователей с параметрами: ids {}, from {}, size {}", ids, from, size);
         List<UserResponseDto> response = userService.getUsersAdmin(ids, from, size);
-        log.info("Список пользователей получен");
+        log.info("Список пользователей получен: {}", response);
         return response;
     }
 

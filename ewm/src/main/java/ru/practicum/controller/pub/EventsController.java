@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_public;
+package ru.practicum.controller.pub;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,10 +31,11 @@ public class EventsController {
                                          @RequestParam(defaultValue = "0") Integer from,
                                          @RequestParam(defaultValue = "10") Integer size,
                                          HttpServletRequest request) {
-        log.info("Запрос на получение списка событий");
+        log.info("Запрос на получение списка событий с параметрами text: {}, categoryId: {}, paid: {}, rangeStart: {}, rangeEnd: {}, " +
+                "onlyAvailable: {}, sort: {}, from: {}, size: {}", text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size);
         List<EventShortDto> response = eventService.getEvents(text, categories, paid,
                 rangeStart, rangeEnd, onlyAvailable, sort, from, size, request);
-        log.info("Список получен");
+        log.info("Список получен: {}", response);
         return response;
     }
 

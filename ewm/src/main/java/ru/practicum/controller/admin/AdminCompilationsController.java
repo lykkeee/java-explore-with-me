@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_admin;
+package ru.practicum.controller.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +39,7 @@ public class AdminCompilationsController {
     @PatchMapping("/{compId}")
     public CompilationResponseDto updateCompilation(@PathVariable Long compId,
                                                     @RequestBody @Valid CompilationUpdateDto compilationUpdateDto) {
-        log.info("Запрос на обновление подборки с id: {}", compId);
+        log.info("Запрос на обновление подборки с id: {}, {}", compId, compilationUpdateDto);
         CompilationResponseDto response = compilationService.updateCompilation(compId, compilationUpdateDto);
         log.info("Подборка обновлена: {}", response);
         return response;

@@ -42,7 +42,7 @@ public class ErrorHandler {
                 .build();
     }
 
-    @ExceptionHandler({MethodArgumentTypeMismatchException.class, MethodArgumentNotValidException.class, MissingServletRequestParameterException.class, ValidateTimeException.class})
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class, MethodArgumentNotValidException.class, MissingServletRequestParameterException.class, ValidateException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleBadRequest(final Exception e) {
         log.error("400 {}", e.getMessage());

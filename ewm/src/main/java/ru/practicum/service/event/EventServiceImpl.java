@@ -1,18 +1,17 @@
 package ru.practicum.service.event;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import ru.practicum.HitRequestDto;
 import ru.practicum.HitResponseDto;
 import ru.practicum.StatsClient;
 import ru.practicum.exception.*;
 import ru.practicum.mapper.EventMapper;
+import ru.practicum.mapper.HitMapper;
 import ru.practicum.mapper.RequestMapper;
 import ru.practicum.model.category.Category;
-import ru.practicum.model.enums.Sort;
+import ru.practicum.model.enums.EventSort;
 import ru.practicum.model.enums.State;
 import ru.practicum.model.enums.Status;
 import ru.practicum.model.event.*;
@@ -29,7 +28,6 @@ import ru.practicum.repository.user.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -38,8 +36,8 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-@Slf4j
 public class EventServiceImpl implements EventService {
+    private static final String APP_NAME = "ewm";
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
     private final RequestRepository requestRepository;
@@ -48,7 +46,6 @@ public class EventServiceImpl implements EventService {
     private final StatsClient statsClient;
 
     private final ModelMapper mapper;
-    private static final String APP_NAME = "ewm";
 
     @Override
     public List<EventShortDto> getUsersEvents(Long userId, Integer from, Integer size) {
@@ -100,7 +97,7 @@ public class EventServiceImpl implements EventService {
                                              LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size) {
         if (rangeEnd != null && rangeStart != null) {
             if (rangeEnd.isBefore(rangeStart)) {
-                throw new ValidateTimeException("Time");
+                throw new ValidateException("Time");
             }
         }
         List<Event> response = eventRepository.getAdminEvents(users, states, categories, rangeStart, rangeEnd, PageRequest.of(from / size, size)).toList();
@@ -139,7 +136,7 @@ public class EventServiceImpl implements EventService {
                                          LocalDateTime rangeEnd, Boolean onlyAvailable, String sort, Integer from, Integer size, HttpServletRequest request) {
         if (rangeEnd != null && rangeStart != null) {
             if (rangeEnd.isBefore(rangeStart)) {
-                throw new ValidateTimeException("Time");
+                throw new ValidateException("Time");
             }
         }
         List<Event> events = eventRepository.getEvents(text, categories, paid, rangeStart, rangeEnd, State.PUBLISHED.toString(), PageRequest.of(from / size, size)).toList();
@@ -155,14 +152,14 @@ public class EventServiceImpl implements EventService {
         List<EventShortDto> response = events.stream().map(event -> (EventMapper.toShort(event, getRequestsByEventAndStatus(event.getId(),
                 Status.CONFIRMED).size(), getViews(event.getId())))).collect(Collectors.toList());
         if (sort != null) {
-            if (sort.equals(Sort.EVENT_DATE.toString())) {
+            if (sort.equals(EventSort.EVENT_DATE.toString())) {
                 response.sort(Comparator.comparing(EventShortDto::getEventDate));
             }
-            if (sort.equals(Sort.VIEWS.toString())) {
+            if (sort.equals(EventSort.VIEWS.toString())) {
                 response.sort(Comparator.comparing(EventShortDto::getViews));
             }
         }
-        addHit(request);
+        HitMapper.addHit(request, statsClient, APP_NAME);
         return response;
     }
 
@@ -172,7 +169,7 @@ public class EventServiceImpl implements EventService {
         if (!event.getState().equals(State.PUBLISHED.toString())) {
             throw new DataNotFoundException("Event with id=" + eventId + " was not found");
         }
-        addHit(request);
+        HitMapper.addHit(request, statsClient, APP_NAME);
         return EventMapper.toFull(event, getRequestsByEventAndStatus(eventId, Status.CONFIRMED).size(), getViews(eventId));
     }
 
@@ -280,7 +277,7 @@ public class EventServiceImpl implements EventService {
 
     private void isEventDateCorrect(LocalDateTime eventDate) {
         if (eventDate.isBefore(LocalDateTime.now().plusHours(2L))) {
-            throw new ValidateTimeException("Field: eventDate. Error: должно содержать дату, которая еще не наступила. Value: " + eventDate);
+            throw new ValidateException("Field: eventDate. Error: должно содержать дату, которая еще не наступила. Value: " + eventDate);
         }
     }
 
@@ -307,15 +304,6 @@ public class EventServiceImpl implements EventService {
 
     private List<Request> getRequestsByEventAndStatus(Long eventId, Status status) {
         return requestRepository.findByEventIdAndStatus(eventId, status.toString());
-    }
-
-    private void addHit(HttpServletRequest request) {
-        HitRequestDto requestDto = new HitRequestDto();
-        requestDto.setApp(APP_NAME);
-        requestDto.setUri(request.getRequestURI());
-        requestDto.setIp(request.getRemoteAddr());
-        requestDto.setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        statsClient.addStat(requestDto);
     }
 
     private Long getViews(Long eventId) {

@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_admin;
+package ru.practicum.controller.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

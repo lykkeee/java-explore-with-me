@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_public;
+package ru.practicum.controller.pub;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +19,9 @@ public class CategoriesController {
     @GetMapping
     public List<CategoryResponseDto> getCategories(@RequestParam(defaultValue = "0") Integer from,
                                                    @RequestParam(defaultValue = "10") Integer size) {
-        log.info("Запрос на получение списка категорий");
+        log.info("Запрос на получение списка категорий, параметры from {}, size {}", from, size);
         List<CategoryResponseDto> response = categoryService.getCategories(from, size);
-        log.info("Список получен");
+        log.info("Список получен: {}", response);
         return response;
     }
 

@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_public;
+package ru.practicum.controller.pub;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +20,9 @@ public class CompilationsController {
     public List<CompilationResponseDto> getCompilations(@RequestParam(required = false) Boolean pinned,
                                                         @RequestParam(defaultValue = "0") Integer from,
                                                         @RequestParam(defaultValue = "10") Integer size) {
-        log.info("Запрос на получение списка подборок");
+        log.info("Запрос на получение списка подборок c параметрами pinned: {}, from: {}, size: {}", pinned, from, size);
         List<CompilationResponseDto> response = compilationService.getCompilations(pinned, from, size);
-        log.info("Список получен");
+        log.info("Список получен: {}", response);
         return response;
     }
 
