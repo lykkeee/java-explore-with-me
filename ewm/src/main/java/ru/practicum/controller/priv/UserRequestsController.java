@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_user;
+package ru.practicum.controller.priv;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ public class UserRequestsController {
     public List<RequestResponseDto> getUsersRequests(@PathVariable Long userId) {
         log.info("Запрос на получение списка заявок пользователя с id: {}", userId);
         List<RequestResponseDto> response = eventService.getUsersRequests(userId);
-        log.info("Список получен");
+        log.info("Список получен: {}", response);
         return response;
     }
 
@@ -38,7 +38,7 @@ public class UserRequestsController {
     @PatchMapping("/{requestId}/cancel")
     public RequestResponseDto cancelRequest(@PathVariable Long userId,
                                             @PathVariable Long requestId) {
-        log.info("Запрос на отмену запроса с id {}", requestId);
+        log.info("Запрос от пользователя с id {} на отмену запроса с id {}", userId, requestId);
         RequestResponseDto response = eventService.cancelRequest(userId, requestId);
         log.info("Запрос отменён: {}", response);
         return response;

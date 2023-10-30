@@ -1,4 +1,4 @@
-package ru.practicum.controller.privacy_user;
+package ru.practicum.controller.priv;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +27,9 @@ public class UserEventsController {
     public List<EventShortDto> getUsersEvents(@PathVariable Long userId,
                                               @RequestParam(defaultValue = "0") Integer from,
                                               @RequestParam(defaultValue = "10") Integer size) {
-        log.info("Запрос на получение списка событий, добавленных пользователем с id: {}", userId);
+        log.info("Запрос на получение списка событий, добавленных пользователем с id: {}, параметры from {}, size {}", userId, from, size);
         List<EventShortDto> response = eventService.getUsersEvents(userId, from, size);
-        log.info("Список получен");
+        log.info("Список получен: {}", response);
         return response;
     }
 
@@ -56,7 +56,7 @@ public class UserEventsController {
     public EventFullDto updateUsersEvent(@PathVariable Long userId,
                                           @PathVariable Long eventId,
                                           @RequestBody @Valid EventUpdateDto eventUpdateDto) {
-        log.info("Запрос на изменение события с id: {}, {}", eventId, eventUpdateDto);
+        log.info("Запрос от пользователя с id {} на изменение события с id: {}, {}", userId, eventId, eventUpdateDto);
         EventFullDto response = eventService.updateUsersEvent(userId, eventId, eventUpdateDto);
         log.info("Событие изменено: {}", response);
         return response;
@@ -65,9 +65,9 @@ public class UserEventsController {
     @GetMapping("/{eventId}/requests")
     public List<RequestResponseDto> getUsersEventsRequests(@PathVariable Long userId,
                                                      @PathVariable Long eventId) {
-        log.info("Запрос на получение списка запросов на участии в событии текущего пользователя: {}", userId);
+        log.info("Запрос на получение списка запросов на участии в событии с id {} текущего пользователя: {}", eventId, userId);
         List<RequestResponseDto> response = eventService.getUsersEventsRequests(userId, eventId);
-        log.info("Список получен");
+        log.info("Список получен: {}", response);
         return response;
     }
 
@@ -75,9 +75,9 @@ public class UserEventsController {
     public RequestStatusUpdateDto updateRequestsStatus(@PathVariable Long userId,
                                                          @PathVariable Long eventId,
                                                          @RequestBody @Valid RequestRequestDto requestDto) {
-        log.info("Запрос на обновление статусов заявок с id: {}, {}", requestDto.getRequestIds(), requestDto);
+        log.info("Запрос от пользователя с id {} на обновление статусов заявок с id: {}, {} для события с id {}", userId, requestDto.getRequestIds(), requestDto, eventId);
         RequestStatusUpdateDto response = eventService.updateRequestsStatus(userId, eventId, requestDto);
-        log.info("Статусы обновлены");
+        log.info("Статусы обновлены: {}", response);
         return response;
     }
 }
