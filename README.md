@@ -1,5 +1,3 @@
-https://github.com/lykkeee/java-explore-with-me/pull/5
-
 ## java-explore-with-me
 ## Приложение в котором можно предложить какое-либо событие и собрать компанию для участия в нём.
 
